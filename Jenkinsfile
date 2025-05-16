@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        MAVEN_OPTS = "-Dmaven.repo.local=.m2/repository"
+        IMAGE = 'amanpatne/flightbooking:latest'
     }
 
     stages {
@@ -14,16 +14,20 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('Flightbooking') {
-                    sh './mvnw clean package -DskipTests || mvn clean package -DskipTests'
+                script {
+                    echo """
+                    docker run --rm -v ${pwd()}:/app -w /app ${IMAGE} mvn clean package -DskipTests
+                    """
                 }
             }
         }
 
         stage('Test') {
             steps {
-                dir('Flightbooking') {
-                    sh './mvnw test || mvn test'
+                script {
+                    echo """
+                    docker run --rm -v ${pwd()}:/app -w /app ${IMAGE} mvn test
+                    """
                 }
             }
         }
