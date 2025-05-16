@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flight Schedules</title>
+</head>
+<body>
+    <h1>Schedules for Flight: <span th:text="${flight.airline}"></span></h1>
+    <table border="1">
+        <tr><th>Date</th></tr>
+        <tr th:each="date : ${schedules}">
+            <td th:text="${date}"></td>
+        </tr>
+    </table>
+    <p><a th:href="@{/flights/{id}(id=${flight.id})}">Back to Flight Details</a></p>
+    <p><a th:href="@{/flights}">Back to Flights</a></p>
+</body>
+</html>
