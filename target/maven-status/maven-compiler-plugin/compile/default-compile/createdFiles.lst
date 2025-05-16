@@ -1,8 +1,8 @@
-com/aman/Flightbooking/controller/TicketController.class
-com/aman/Flightbooking/controller/HomeController.class
-com/aman/Flightbooking/model/Ticket.class
-com/aman/Flightbooking/service/TicketService.class
-com/aman/Flightbooking/service/FlightService.class
-com/aman/Flightbooking/model/Flight.class
-com/aman/Flightbooking/FlightbookingApplication.class
-com/aman/Flightbooking/controller/FlightController.class
+com/nomaan/Flightbooking/service/TicketService.class
+com/nomaan/Flightbooking/model/Ticket.class
+com/nomaan/Flightbooking/controller/TicketController.class
+com/nomaan/Flightbooking/model/Flight.class
+com/nomaan/Flightbooking/service/FlightService.class
+com/nomaan/Flightbooking/FlightbookingApplication.class
+com/nomaan/Flightbooking/controller/HomeController.class
+com/nomaan/Flightbooking/controller/FlightController.class
