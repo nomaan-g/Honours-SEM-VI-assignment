@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AmanPatne/sem6_honors_fightbooking.git'
+                git branch: 'main', url: 'https://github.com/nomaan-g/Honours-SEM-VI-assignment'
             }
         }
 
