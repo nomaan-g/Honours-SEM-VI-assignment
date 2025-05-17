@@ -6,6 +6,7 @@ pipeline {
         PEM_PATH = '/Users/ayeshagagan/Downloads/sem6_honors_fightbooking-main/Flightbooking/flightbooking_key.pem'
         EC2_USER = 'ec2-user'
         EC2_HOST = '16.171.21.116'
+        MVN_PATH = '/usr/local/maven/bin/mvn'
     }
 
     stages {
@@ -17,13 +18,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'cd Flightbooking && mvn clean package -DskipTests'
+                sh '''
+                cd Flightbooking
+                ${MVN_PATH} clean package -DskipTests
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                sh 'cd Flightbooking && mvn test'
+                sh '''
+                cd Flightbooking
+                ${MVN_PATH} test
+                '''
             }
         }
 
