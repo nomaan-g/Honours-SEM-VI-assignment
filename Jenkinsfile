@@ -35,16 +35,22 @@ pipeline {
         }
 
         stage('Deploy and Run on EC2') {
-            steps {
-                sh """
-                scp -o StrictHostKeyChecking=no -i "${PEM_PATH}" Flightbooking/target/${JAR_NAME} ${EC2_USER}@${EC2_HOST}:~/
+    steps {
+        sh '''
+            # Copy the JAR to EC2
+            scp -o StrictHostKeyChecking=no -i /Users/ayeshagagan/Downloads/sem6_honors_fightbooking-main/Flightbooking/flightbooking_key.pem Flightbooking/target/Flightbooking-0.0.1-SNAPSHOT.jar ec2-user@16.171.21.116:~/
 
-                ssh -o StrictHostKeyChecking=no -i "${PEM_PATH}" ${EC2_USER}@${EC2_HOST} '
-                    pkill -f ${JAR_NAME} || true
-                    nohup java -jar ${JAR_NAME} > app.log 2>&1 &
-                '
-                """
-            }
-        }
+            # SSH into EC2 and restart the app
+            ssh -o StrictHostKeyChecking=no -i /Users/ayeshagagan/Downloads/sem6_honors_fightbooking-main/Flightbooking/flightbooking_key.pem ec2-user@16.171.21.116 << 'EOF'
+                echo "Killing existing application if running..."
+                pkill -f Flightbooking-0.0.1-SNAPSHOT.jar || true
+                echo "Starting application..."
+                nohup java -jar Flightbooking-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+                echo "Deployment successful."
+            EOF
+        '''
+    }
+}
+
     }
 }
