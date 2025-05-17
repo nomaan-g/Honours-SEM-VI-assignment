@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    stage('Checkout') {
-    steps {
-        git branch: 'main', url: 'https://github.com/nomaan-g/Honours-SEM-VI-assignment'
-    }
-}
-
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/nomaan-g/Honours-SEM-VI-assignment'
+            }
+        }
 
         stage('Build') {
             steps {
